@@ -18,45 +18,17 @@ namespace EmpService.Controllers
             new Student() { Id = 3, Name = "John" },
         };
 
-        [Route("~/api/teachers")]
-        public IEnumerable<Teacher> GetTeachers()
-        {
-            List<Teacher> teachers = new List<Teacher>()
-            {
-                new Teacher() { Id = 1, Name = "Rob" },
-                new Teacher() { Id = 2, Name = "Mike" },
-                new Teacher() { Id = 3, Name = "Mary" }
-            };
-            return teachers;
-        }
-
-        [Route("")]
-        public IEnumerable<Student> Get()
-        {
-            return students;
-        }
-
-        [Route("{id:int:range(1,3)}")]
+        [Route("{id:int}")]
         public Student Get(int id)
         {
             return students.FirstOrDefault(e => e.Id == id);
         }
 
-        [Route("{name:alpha}")]
-        public Student Get(string name)
-        {
-            return students.FirstOrDefault(e => e.Name.ToLower() == name.ToLower());
-        }
-
-        [Route("{id}/courses")]
-        public IEnumerable<string> GetStudentCourses(int id)
-        {
-            if(id == 1)
-                return new List<String>() { "C#", "ASP.NET", "SQL Server" };
-            else if (id == 2)
-                return new List<String>() { "ASP.NET Web API", "C#", "SQL Server" };
-            else
-                return new List<String>() { "Bootstrap", "jQuery", "AngularJs" };
-        }
+        //public HttpResponseMessage Post(Student student)
+        //{
+        //    students.Add(student);
+        //    var response = Request.CreateResponse(HttpStatusCode.Created);
+        //    return response;
+        //}
     }
 }

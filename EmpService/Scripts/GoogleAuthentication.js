@@ -43,7 +43,7 @@ function signupExternalUser(accessToken, provider) {
         },
         success: function () {
             // registered to google
-            window.location.href = "/api/Account/ExternalLogin?provider=" + provider + "&response_type=token&client_id=self&redirect_uri=https%3A%2F%2Flocalhost%3A44333%2FLogin.html&state=DpvQkMJz_ujnG_xES2CicKmlPsh1EDmU6STWSVJif-M1"
+            window.location.href = window.location.href = "/api/Account/ExternalLogin?provider=" + provider + "&response_type=token&client_id=self&redirect_uri=https%3A%2F%2Flocalhost%3A44333%2FLogin.html&state=DpvQkMJz_ujnG_xES2CicKmlPsh1EDmU6STWSVJif-M1"
         }
     });
 }
