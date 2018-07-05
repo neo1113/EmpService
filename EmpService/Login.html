@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body style="padding-top:20px">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="well">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="success">
+                        <th colspan="2">
+                            Existing User Login
+                            <a class="btn btn-success pull-right" href="Register.html">Register</a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Username</td>
+                        <td><input type="text" id="txtUsername" placeholder="Username" /></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="password" id="txtPassword" placeholder="Password" /></td>
+                    </tr>
+                    <tr class="success">
+                        <td colspan="2">
+                            <input type="button" id="btnLogin" class="btn btn-success" value="Login" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="success">
+                        <th>Social Logins</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="button" id="btnGoogleLogin" class="btn btn-success" value="Login with Google" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="button" id="btnFacebookLogin" class="btn btn-success" value="Login with Facebook" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div id="divError" class="alert alert-danger collapse">
+                <a id="linkClose" class="close" href="#">&times;</a>
+                <div id="divErrorText"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/GoogleAuthentication.js"></script>
+    <!--<script src="Scripts/bootstrap.min.js"></script>-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            getAccessToken();
+
+            $('#btnGoogleLogin').click(function () {
+                window.location.href = "/api/Account/ExternalLogin?provider=Google&response_type=token&client_id=self&redirect_uri=https%3A%2F%2Flocalhost%3A44333%2FLogin.html&state=DpvQkMJz_ujnG_xES2CicKmlPsh1EDmU6STWSVJif-M1"
+            });
+
+            $('#btnFacebookLogin').click(function () {
+                window.location.href = "/api/Account/ExternalLogin?provider=Facebook&response_type=token&client_id=self&redirect_uri=https%3A%2F%2Flocalhost%3A44333%2FLogin.html&state=DpvQkMJz_ujnG_xES2CicKmlPsh1EDmU6STWSVJif-M1";
+            });
+
+            $('#linkClose').click(function () {
+                $('#divError').hide('fade');
+            });
+
+            $('#btnLogin').click(function () {
+                $.ajax({
+                    url: '/Token',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: {
+                        username: $('#txtUsername').val(),
+                        password: $('#txtPassword').val(),
+                        grant_type: 'password'
+                    },
+                    success: function (response) {
+                        localStorage.setItem('accessToken', response.access_token);
+                        localStorage.setItem('userName', response.userName);
+                        window.location.href = "Data.html";
+                    },
+                    error: function (jqXHR) {
+                        $('#divErrorText').text(jqXHR.responseText);
+                        $('#divError').show('fade');
+                    }
+                });
+
+            });
+        });
+    </script>
+</body>
+</html>

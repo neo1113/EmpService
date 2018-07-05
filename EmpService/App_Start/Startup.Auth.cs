@@ -10,6 +10,8 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using EmpService.Providers;
 using EmpService.Models;
+using EmpService.Facebook;
+using Microsoft.Owin.Security.Facebook;
 
 namespace EmpService
 {
@@ -38,7 +40,7 @@ namespace EmpService
                 TokenEndpointPath = new PathString("/Token"),
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(10),
                 // In production mode set AllowInsecureHttp = false
                 AllowInsecureHttp = true
             };
@@ -56,14 +58,24 @@ namespace EmpService
             //    consumerSecret: "");
 
             //app.UseFacebookAuthentication(
-            //    appId: "",
-            //    appSecret: "");
+            //        appId: "",
+            //        appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            var facebookOptions = new FacebookAuthenticationOptions()
+            {
+                AppId = "907263992815060",
+                AppSecret = "c60458ab43f49d192df1994e6e016adc",
+                BackchannelHttpHandler = new FacebookBackChannelHandler(),
+                UserInformationEndpoint = "https://graph.facebook.com/v3.0/me?fields=id,email"
+            };
+            facebookOptions.Scope.Add("email");
+            app.UseFacebookAuthentication(facebookOptions);
+
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "21009537164-ubuo1gi6dj4fp3340nr87egujr1v9ja7.apps.googleusercontent.com",
+                ClientSecret = "PfUOHOJDxX0khlcYzTCkdMae"
+            });
         }
     }
 }
