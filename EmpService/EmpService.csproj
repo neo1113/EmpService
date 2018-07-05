@@ -310,6 +310,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Login.html" />
+    <Content Include="TermsOfService.html" />
+    <Content Include="PrivacyPolicy.html" />
     <Content Include="Register.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

@@ -2,29 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <!--<meta property="fb:app_id" cosntent="907263992815060" />-->
     <title></title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body style="padding-top:20px">
-    <script>
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '907263992815060',
-                xfbml: true,
-                version: 'v3.0'
-            });
-            FB.AppEvents.logPageView();
-        };
-
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
     <div class="col-md-10 col-md-offset-1">
         <div class="well">
             <table class="table table-bordered">
@@ -117,10 +98,6 @@
                 });
 
             });
-        });
-
-        FB.getLoginStatus(function (response) {
-            statusChangeCallback(response);
         });
     </script>
 </body>
