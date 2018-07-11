@@ -258,6 +258,7 @@
     <Compile Include="Controllers\StudentsV2Controller.cs" />
     <Compile Include="Controllers\StudentsV1Controller.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Custom\CustomControllerSelector.cs" />
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>EmployeeDataModel.tt</DependentUpon>
     </Compile>
