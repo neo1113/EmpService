@@ -130,4 +130,3 @@ C:\Users\GEBO\Desktop\ASP.NET\WEB API\SAMPLES\OWIN\EmpService\EmpService\obj\Deb
 C:\Users\GEBO\Desktop\ASP.NET\WEB API\SAMPLES\OWIN\EmpService\EmpService\obj\Debug\EmpService.csproj.CopyComplete
 C:\Users\GEBO\Desktop\ASP.NET\WEB API\SAMPLES\OWIN\EmpService\EmpService\obj\Debug\EmpService.dll
 C:\Users\GEBO\Desktop\ASP.NET\WEB API\SAMPLES\OWIN\EmpService\EmpService\obj\Debug\EmpService.pdb
-C:\Users\GEBO\Desktop\ASP.NET\WEB API\SAMPLES\OWIN\EmpService\EmpService\obj\Debug\EmpService.csprojAssemblyReference.cache
