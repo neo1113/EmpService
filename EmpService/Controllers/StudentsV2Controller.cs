@@ -18,13 +18,13 @@ namespace EmpService.Controllers
         };
 
         // web API versioning
-        [Route("api/v2/students")]
+        //[Route("api/v2/students")]
         public IEnumerable<StudentV2> Get()
         {
             return students;
         }
 
-        [Route("api/v2/students/{id}")]
+        //[Route("api/v2/students/{id}")]
         public StudentV2 Get(int id)
         {
             return students.FirstOrDefault(e => e.Id == id);
