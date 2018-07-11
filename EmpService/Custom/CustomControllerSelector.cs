@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
@@ -47,16 +48,30 @@ namespace EmpService.Custom
             //}
 
             //// web API using accept header
+            //var acceptHeader = request.Headers.Accept
+            //                                    .Where(ah => ah.Parameters.Count(p => p.Name.ToLower() == "version".ToLower()) > 0);
+
+            //// if the var contains any value
+            //if(acceptHeader.Any())
+            //{
+            //    versionNumber = acceptHeader.First().Parameters.First(p => p.Name.ToLower() == "version".ToLower()).Value;
+            //}
+
+            // web API using custom media types
+            var regex = @"application\/vnd\.pragimtech\.([a-z]+)\.v(?<version>[0-9]+)\+(?<mediatype>[a-z]+)";
+
             var acceptHeader = request.Headers.Accept
-                                                .Where(ah => ah.Parameters.Count(p => p.Name.ToLower() == "version".ToLower()) > 0);
+                                    .Where(ah => Regex.IsMatch(ah.MediaType, regex, RegexOptions.IgnoreCase));
 
             // if the var contains any value
-            if(acceptHeader.Any())
+            if (acceptHeader.Any())
             {
-                versionNumber = acceptHeader.First().Parameters.First(p => p.Name.ToLower() == "version".ToLower()).Value;
+                var match = Regex.Match(acceptHeader.First().MediaType, regex, RegexOptions.IgnoreCase);
+                versionNumber = match.Groups["version"].Value;  // returns the version number
             }
 
-            if(versionNumber == "1")
+
+            if (versionNumber == "1")
             {
                 controllerName = controllerName + "V1";
             }
